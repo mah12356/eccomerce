@@ -1,0 +1,30 @@
+.footer {
+    background-color: #793EFC;
+    color: #FFFFFF;
+    font-size: .9em;
+    height: fit-content;
+}
+.footer > .container, .footer > .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.footer-titles {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-bottom: 30px;
+}
+.footer-links ul {
+    list-style: none;
+    font-size: 16px;
+}
+.footer-links ul > li > a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.download-app {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 195px;
+    margin: 10px auto;
+}

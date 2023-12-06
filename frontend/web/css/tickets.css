@@ -1,0 +1,82 @@
+.chat-section {
+    width: 100%;
+    max-width: 450px;
+    background: url("/upload/statics/chat-background.jpg") no-repeat;
+    background-size: auto;
+    margin: 0 auto 0;
+    border-radius: 10px;
+    /*position: relative;*/
+    box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.6);
+    overflow-y: scroll;
+    height: 700px;
+}
+.chat-section {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.chat-section::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+.header {
+    background: #5221BD;
+    display: flex;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    color: #FFFFFF;
+}
+.grp-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+.chat-box {
+    padding: 40px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.chat-box .chat-admin,
+.chat-box .chat {
+    display: flex;
+    gap: 15px;
+}
+.chat-box .chat-client {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 15px;
+}
+.chat-box .msg {
+    background: rgba(58, 56, 76, 0.85);
+    max-width: 70%;
+    padding: 9px 15px;
+    border-radius: 10px;
+    /*position: relative;*/
+    font-size: 13px;
+    color: #FFFFFF;
+}
+.chat-box .chat-admin .msg {
+    background: rgba(205, 253, 160, 0.85) !important  ;
+    color: #000000;
+}
+.chat-box .date {
+    font-size: 10px;
+    color: #FFFFFF;
+    float: left;
+    display: block;
+}
+
+.chat-box .chat-admin .date {
+    color: #000000 !important;
+}
+
+.chat-box .default {
+    background: rgba(58, 56, 76, 0.85);
+    max-width: 70%;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    font-size: 13px;
+    color: #FFFFFF;
+}
