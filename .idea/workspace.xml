@@ -147,7 +147,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/mahdi/OneDrive/Desktop/yii/project/yii-application",
+    "last_opened_file_path": "C:/Users/mahdi/OneDrive/Desktop/yii/project/test04",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
@@ -175,6 +175,7 @@
       <workItem from="1701774982605" duration="6889000" />
       <workItem from="1701843580875" duration="6842000" />
       <workItem from="1701851251281" duration="24032000" />
+      <workItem from="1701928249380" duration="13713000" />
     </task>
     <servers />
   </component>
@@ -186,7 +187,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/frontend/controllers/SiteController.php</url>
-          <line>532</line>
+          <line>535</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

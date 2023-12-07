@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use backend\models\ChoosenArt;
+use backend\models\ChosenArtBanner;
 use common\components\Gadget;
 use common\components\Jdf;
 use common\components\Message;
@@ -511,6 +513,7 @@ class SiteController extends Controller
             $this->layout = 'app';
         }
 
+        $chosen_art=ChoosenArt::find()->where(['status'=>'ready'])->asArray()->all();
         $model = Articles::find()->where(['id' => $id])->with('cat')->with('tags.tag')->with('posts.images')->asArray()->one();
         if (!$model) {
             return Yii::$app->response->redirect(Yii::$app->request->referrer);
@@ -566,13 +569,19 @@ class SiteController extends Controller
                 }
             }
         }
-
+        $last_arts = Articles::find()->orderBy(['modify_date'=>SORT_DESC])->limit('5')->asArray()->all();
+        $last_arts_banner=ChosenArtBanner::find()->where(['for'=>'last_arts'])->asArray()->one();
+        $chosen_art_banner=ChosenArtBanner::find()->where(['for'=>'chosen_art'])->asArray()->one();
         return $this->render('article-view', [
+            'chosen_art'=>$chosen_art,
             'model' => $model,
             'related' => $related,
             'comments' => $comments,
             'community' => $community,
             'signupForm' => $signupForm,
+            'last_arts' => $last_arts,
+            'last_arts_banner'=>$last_arts_banner,
+            'chosen_art_banner'=>$chosen_art_banner
         ]);
     }
 

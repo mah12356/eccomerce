@@ -112,16 +112,17 @@ class SiteController extends Controller
     }
     public function actionChoosenArt(){
         $articles=Articles::find()->asArray()->all();
-        $id= Yii::$app->request->post('id');
-        $category_id= Yii::$app->request->post('category_id');
-        $banner= Yii::$app->request->post('banner');
-        $title= Yii::$app->request->post('title');
-        $date= Yii::$app->request->post('date');
-$r='ready';
+
         if ($this->request->isPost){
+            $id= Yii::$app->request->post('id');
+            $category_id= Yii::$app->request->post('category_id');
+            $banner= Yii::$app->request->post('banner');
+            $title= Yii::$app->request->post('title');
+            $date= Yii::$app->request->post('date');
+
             $model= ChoosenArt::find()->where(['art_id'=>$id])->asArray()->one();
 
-            if ($model === null){
+            if ($model == null){
                 $choosen_art= new ChoosenArt();
                 $choosen_art->art_id=$id;
                 $choosen_art->category_id=$category_id;
@@ -130,12 +131,12 @@ $r='ready';
                 $choosen_art->date=$date;
                 $choosen_art->save();
             }else{
-                if ($model->status == 'unready'){
-                    $model->status='ready';
-                    $model->save();
+                if ($model['status'] == 'unready'){
+                    $connection = Yii::$app->db;
+                    $connection->createCommand()->update('choosen_art', ['status' => 'ready'], ['art_id'=>$id])->execute();
                 }else{
-                    $model->status='unready';
-                    $model->save();
+                    $connection = Yii::$app->db;
+                    $connection->createCommand()->update('choosen_art',['status' => 'unready'], ['art_id'=>$id])->execute();
                 }
             }
         }

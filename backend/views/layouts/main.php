@@ -282,6 +282,7 @@ $url = Yii::$app->urlManager;
                         <section class="sidebar-dropdown">
                             <a href="<?= $url->createUrl(['/blog/articles/create']) ?>">ساخت مقاله جدید</a>
                             <a href="<?= $url->createUrl(['/blog/articles/index']) ?>">لیست مقالات</a>
+                            <a href="<?= $url->createUrl(['site/choosen-art']) ?>">مقالات برگزیده</a>
                         </section>
                     </section>
                     <section class="sidebar-group-link">
