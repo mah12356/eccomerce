@@ -72,7 +72,7 @@ $url = Yii::$app->urlManager;
                             <i class="fas fa-angle-down"></i>
                             <span
                                 class="header-username"><?= Yii::$app->user->identity->name ?> <?= Yii::$app->user->identity->lastname ?></span>
-                            <img class="header-avatar" src="/upload/assets/admin-avatar.png" alt="">
+                            <img class="header-avatar" src="/upload/img/admin-avatar.png" alt="">
                         </span>
                         <section id="header-profile" class="header-profile rounded">
                             <section class="list-group rounded">
@@ -95,6 +95,8 @@ $url = Yii::$app->urlManager;
                     <section class="sidebar-part-title">منو</section>
                     <hr>
                     <a href="<?= $url->createUrl(['/main/config/index']) ?>" class="sidebar-link"><i class="fas fa-cog"></i><span>تنظیمات</span></a>
+                    <a href="<?= $url->createUrl(['/main/result/create']) ?>" class="sidebar-link"><i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <span>ساخت نتیجه پکیج</span></a>
                     <section class="sidebar-group-link">
                         <section class="sidebar-dropdown-toggle">
                             <i class="fas fa-home icon"></i><span>خانه</span><i class="fas fa-angle-left angle"></i>

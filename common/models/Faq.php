@@ -18,6 +18,8 @@ class Faq extends \yii\db\ActiveRecord
 {
     const BELONG_HOME = 'home';
 
+    const BELONG_PACKAGES='packages';
+
     const UPLOAD_PATH = 'faq';
 
     public $uploadFile;

@@ -32,6 +32,7 @@ use common\modules\main\models\Category;
 use common\modules\main\models\Config;
 use common\modules\main\models\MetaTags;
 use common\modules\main\models\Tokens;
+use common\modules\models\Result;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -371,14 +372,26 @@ class SiteController extends Controller
         if (isset($_SESSION['appMode']) && $_SESSION['appMode']) {
             $this->layout = 'app';
         }
+        $process = Gallery::find()->where(['parent_id' => 0, 'belong' => Gallery::BELONG_HOME, 'type' => Gallery::TYPE_COMPARE])
+            ->limit(4)->asArray()->all();
 
         $this->view->title = 'لیست پکیج ها';
+
+        $comments = Comments::find()->orderBy(new Expression('rand()'))->asArray()->all();
 
         $model = Packages::find()->where(['status' => Packages::STATUS_READY, 'preview' => Packages::PREVIEW_ON])->orderBy(['start_register' => SORT_ASC])
             ->with('cat')->with('courses')->orderBy(['id' => SORT_DESC])->asArray()->all();
 
+        $result_package= Result::find()->all();
+        $faq = Faq::find()->where(['belong' => Faq::BELONG_PACKAGES])->orderBy(['sort' => SORT_ASC])->asArray()->all();
+
+
         return $this->render('packages', [
             'model' => $model,
+            'process' => $process,
+            'comments' => $comments,
+            'result_package'=>$result_package,
+            'faq' => $faq
         ]);
     }
 

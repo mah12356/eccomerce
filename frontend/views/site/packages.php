@@ -1,60 +1,1 @@
-<?php
-
-use common\components\Gadget;
-use common\components\Jdf;
-use common\models\Packages;
-
-/** @var yii\web\View $this */
-/** @var Packages $model */
-
-$url = Yii::$app->urlManager;
-?>
-<section class="packages-section w-100">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-12">
-                <video class="w-100 h-auto rounded-3" controls>
-                    <source src="/upload/landing.mp4">
-                </video>
-            </div>
-            <div class="col-lg-6 col-12">
-                <p class="mt-5">
-                    <b>آیا به دنبال بهبودی در زندگی خود از نظر جسمی و روحی هستید؟</b>
-                    <strong>مهساآنلاین</strong> با همراه یک تیم حرفه ای، همواره آماده کمک به شما عزیزان است. ما در اینجا با داشتن دوره های ورزشی شاداب و پویا به همراه حرکات اصلاحی برای ساخت و فرم دهی بدن، دوره ماساژ صورت برای جوان سازی پوست و همینطور با داشتن رژیم های غذایی و رژیم شوک یک پکیج کامل برای کسب نتیجه سریع را برای شما آماده کرده ایم که شما میتوانید در طول این مسیر قدم به قدم با پشتیبان های <strong>مهساآنلاین</strong> همراه شوید و یک زندگی شاداب و سلامت را تجربه کنید.
-                </p>
-                <p class="mt-4">برای شرکت در کلاس های مهساآنلاین میتوانید در یکی از پکیج ها ثبت نام کنید</p>
-                <a href="#package-section" class="btn btn-success"><span>انتخاب پکیج</span><i class="fa fa-arrow-down me-2"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <h1 class="title mt-5">دوره های مهساآنلاین</h1>
-    <div class="container">
-        <div id="package-section" class="row">
-            <?php foreach ($model as $item) { ?>
-                <div class="col-md-4 mb-4">
-                    <div class="packages-package-card">
-                        <div class="header">
-                            <img src="<?= Gadget::showFile($item['poster'], Packages::UPLOAD_PATH) ?>" alt="<?= $item['alt'] ?>">
-                        </div>
-                        <div class="body">
-                            <p class="name"><?= $item['name'] ?></p>
-<!--                            <p class="course-list m-0">لیست دوره ها</p>-->
-                            <p class="courses">
-                                <?php
-                                $price = 0;
-                                foreach ($item['courses'] as $course) {
-                                    $price += $course['price'];
-                                } ?>
-                            </p>
-
-                            <p class="price"><?= Gadget::calculateDiscount($price, $item['discount']) ?> تومان</p>
-                            <a class="register" href="<?= $url->createUrl(['/site/package-detail', 'id' => $item['id']]) ?>">ثبت نام</a>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
-</section>
+<?phpuse common\components\Gadget;use common\components\Jdf;use common\models\Comments;use common\models\Packages;use yii\bootstrap5\ActiveForm;/** @var yii\web\View $this *//** @var $comments frontend\controllers\SiteController *//** @var $process frontend\controllers\SiteController *//** @var $result_package frontend\controllers\SiteController *//** @var Packages $model */$this->registerCssFile('@web/css/packages.css');$url = Yii::$app->urlManager;?><section class="packages-section w-100">    <article class="head-section w-100 mb-5 d-flex align-items-center">        <div class="col-5 mx-auto text-center">            <h1 class="text-center">پکیج های مجله مهسا آنلاین</h1>            <a class="btn-danger btn p-3 mt-3">دیدن پکیج های مجله مهسا آنلاین</a>        </div>    </article>    <div class="about-packages text-center">        <div class="d-none d-md-inline">            <h2 class="px-2 me-3">درباره پکیج ها</h2>            <div class="d-flex align-items-center">                <video controls class="mx-auto d-inline mt-3">                    <source src="/upload/video/landing.mp4">                </video>                <p class="px-2"> من مهسا آنلاین به همراه تیم قدرتمندم، همواره آماده کمک به شما عزیزان هستیم. ما در اینجا با داشتن دوره های ورزشی شاداب و پویا به همراه حرکات اصلاحی برای ساخت و فرم دهی بدن، دوره ماساژ صورت برای پاکسازی و جوان سازی پوست صورت و همینطور با داشتن رژیم های غذایی و رژیم شوک یک پکیج کامل برای کسب بهترین و سریعترین نتیجه را برای شما آماده کرده ایم که شما در طول مسیر قدم به قدم با خودم و پشتیبان های مهساآنلاین همراه هستید که یک زندگی شاداب، پر انرژی همراه با سلامت را تجربه کنید.                    برای شرکت در کلاس های مهساآنلاین میتوانید در یکی از پکیج ها ثبت نام کنید                </p>            </div>        </div>        <div class="d-md-none d-block text-center">            <h2 class="px-2 me-3">درباره پکیج ها</h2>            <p class="px-2"> من مهسا آنلاین به همراه تیم قدرتمندم، همواره آماده کمک به شما عزیزان هستیم. ما در اینجا با داشتن دوره های ورزشی شاداب و پویا به همراه حرکات اصلاحی برای ساخت و فرم دهی بدن، دوره ماساژ صورت برای پاکسازی و جوان سازی پوست صورت و همینطور با داشتن رژیم های غذایی و رژیم شوک یک پکیج کامل برای کسب بهترین و سریعترین نتیجه را برای شما آماده کرده ایم که شما در طول مسیر قدم به قدم با خودم و پشتیبان های مهساآنلاین همراه هستید که یک زندگی شاداب، پر انرژی همراه با سلامت را تجربه کنید.                برای شرکت در کلاس های مهساآنلاین میتوانید در یکی از پکیج ها ثبت نام کنید</p>            <video controls class="mx-auto mt-3">                <source src="/upload/video/landing.mp4">            </video>        </div>        <?php $form = ActiveForm::begin( ['options' => ['class' => 'mt-5']]) ?>        <label for="">نام و نام خانوادگی</label><br>        <input type="text" id="r"><br>        <label>شماره موبایل</label><br>        <input type="text" id="w"><br>        <button href="#" class="neon-button mt-3">درخواست مشاوره</button>        <?php ActiveForm::end(); ?>    </div>    <h2 class="px-2 me-3 my-5">چرا این پکیج ها را ساختم ؟</h2>    <p class="px-3">ورمورمورمورمورمورمورمورمورمورمورمورمورمورمورمورمورمورم</p>    <?php if ($process) { ?>        <section class="results-section w-100 mt-5">            <h2 class="mb-3 px-2 me-3">آن چیزی که در انتظار شماست</h2>            <div class="container">                <div class="row">                    <div class="swiper carousel">                        <div class="swiper-wrapper pb-5">                            <?php foreach ($process as $item) { ?>                                <div class="swiper-slide pb-5">                                    <div class="results-section-card">                                        <img src="<?= Gadget::showFile($item['image'], 'img') ?>" alt="<?= $item['alt'] ?>">                                    </div>                                </div>                            <?php } ?>                        </div>                        <div class="swiper-pagination result-swiper-pagination"></div>                    </div>                </div>            </div>        </section>    <?php } ?>    <?php if ($comments) { ?>        <section class="ux-section w-100">            <h2 class="mb-3 px-2 me-3">نظرات همراهان مهسا آنلاین</h2>            <div class="container">                <div class="row">                    <div class="swiper slider">                        <div class="swiper-wrapper">                            <?php foreach ($comments as $item) { ?>                                <div class="swiper-slide">                                    <div class="ux-section-card">                                        <p class="name"><?= $item['name'] ?></p>                                        <div class="header">                                            <img src="<?= Gadget::showFile($item['avatar'], Comments::UPLOAD_PATH) ?>" alt="<?= $item['name'] ?>">                                            <p><?= $item['period'] ?></p>                                        </div>                                        <p class="comment"><?= $item['text'] ?></p>                                    </div>                                </div>                            <?php } ?>                        </div>                        <div class="swiper-button-next packages-button-next"></div>                        <div class="swiper-button-prev packages-button-prev"></div>                    </div>                </div>            </div>        </section>    <?php } ?>    <?php if ($result_package){?>        <div class="package-result">            <h2 class="mb-3 px-2 me-3">پس از گذراندن اموزش های پکیج ها :</h2>            <?php foreach ($result_package as $result){?>                <ol>                    <li class="mx-3"><?= $result['skill']?></li>                </ol>            <?php }?>        </div>    <?php }?>    <div class="container">        <div class="row" >            <?php foreach ($model as $item) { ?>                <div class="col-md-4 mb-4" id="i">                    <div class="packages-package-card">                        <div class="header">                            <img src="<?= Gadget::showFile($item['poster'], Packages::UPLOAD_PATH) ?>" alt="<?= $item['alt'] ?>">                        </div>                        <div class="body">                            <p class="name"><?= $item['name'] ?></p><!--                            <p class="course-list m-0">لیست دوره ها</p>-->                            <p class="courses">                                <?php                                $price = 0;                                foreach ($item['courses'] as $course) {                                    $price += $course['price'];                                } ?>                            </p>                            <p class="price"><?= Gadget::calculateDiscount($price, $item['discount']) ?> تومان</p>                            <a class="register" href="<?= $url->createUrl(['/site/package-detail', 'id' => $item['id']]) ?>">ثبت نام</a>                        </div>                    </div>                </div>            <?php } ?>        </div>    </div></section>
