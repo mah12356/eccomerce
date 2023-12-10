@@ -32,6 +32,8 @@ use common\modules\main\models\Category;
 use common\modules\main\models\Config;
 use common\modules\main\models\MetaTags;
 use common\modules\main\models\Tokens;
+use common\modules\models\Demos;
+use common\modules\models\PackageDesign;
 use common\modules\models\Result;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -377,12 +379,17 @@ class SiteController extends Controller
 
         $this->view->title = 'لیست پکیج ها';
 
+        $package_design = PackageDesign::find()->one();
+
         $comments = Comments::find()->orderBy(new Expression('rand()'))->asArray()->all();
 
         $model = Packages::find()->where(['status' => Packages::STATUS_READY, 'preview' => Packages::PREVIEW_ON])->orderBy(['start_register' => SORT_ASC])
             ->with('cat')->with('courses')->orderBy(['id' => SORT_DESC])->asArray()->all();
 
+        $demos= Demos::find()->asArray()->one();
+
         $result_package= Result::find()->all();
+
         $faq = Faq::find()->where(['belong' => Faq::BELONG_PACKAGES])->orderBy(['sort' => SORT_ASC])->asArray()->all();
 
 
@@ -391,7 +398,9 @@ class SiteController extends Controller
             'process' => $process,
             'comments' => $comments,
             'result_package'=>$result_package,
-            'faq' => $faq
+            'faq' => $faq,
+            'demos'=>$demos,
+            'package_design' =>$package_design
         ]);
     }
 
@@ -468,6 +477,8 @@ class SiteController extends Controller
 
         $this->view->title = 'مجله مهسا آنلاین';
 
+        $meta_tags = MetaTags::find()->where(['parent_id'=>$category,'belong'=>MetaTags::CATEGORY])->asArray()->all();
+
         if ($category == 0) {
             $model =Articles::find()->orderBy(['modify_date'=>SORT_DESC])->asArray()->all();
 
@@ -483,7 +494,8 @@ class SiteController extends Controller
         return $this->render('blogs', [
             'model' => $model,
             'category' => $category,
-            'community'=>$community
+            'community'=>$community,
+            'meta_tags'=>$meta_tags
         ]);
     }
 
@@ -503,6 +515,8 @@ class SiteController extends Controller
             return Yii::$app->response->redirect(Yii::$app->request->referrer);
         }
 
+        $meta_tags = MetaTags::find()->where(['parent_id'=>$id,'belong'=>MetaTags::TAG])->asArray()->all();
+
         $this->view->title = $tag->title;
 
         $posts = Posts::find()->where(['page_id' => $id, 'belong' => Posts::BELONG_TAGS])->with('images')->asArray()->all();
@@ -512,6 +526,7 @@ class SiteController extends Controller
             'model' => Articles::find()->where(['IN', 'id', ArrayHelper::map(Tags::find()->where(['tag_id' => $id])->asArray()->all(), 'id', 'article_id')])
                 ->andWhere(['publish' => Articles::PUBLISH_TRUE])->orderBy(['id' => SORT_DESC])->with('cat')->asArray()->all(),
             'posts' => $posts,
+            'meta_tags' => $meta_tags
         ]);
     }
 

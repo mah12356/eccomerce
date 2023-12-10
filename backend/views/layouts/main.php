@@ -97,6 +97,8 @@ $url = Yii::$app->urlManager;
                     <a href="<?= $url->createUrl(['/main/config/index']) ?>" class="sidebar-link"><i class="fas fa-cog"></i><span>تنظیمات</span></a>
                     <a href="<?= $url->createUrl(['/main/result/create']) ?>" class="sidebar-link"><i class="fa fa-list-alt" aria-hidden="true"></i>
                         <span>ساخت نتیجه پکیج</span></a>
+                    <a href="<?= $url->createUrl(['/main/demos/']) ?>" class="sidebar-link"><i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <span>دموی کلاس</span></a>
                     <section class="sidebar-group-link">
                         <section class="sidebar-dropdown-toggle">
                             <i class="fas fa-home icon"></i><span>خانه</span><i class="fas fa-angle-left angle"></i>
@@ -262,6 +264,7 @@ $url = Yii::$app->urlManager;
                                 دسته جدید</a>
                             <a href="<?= $url->createUrl(['/main/category/index', 'belong' => Category::BELONG_BLOG]) ?>">لیست
                                 دسته‌ها</a>
+
                         </section>
                     </section>
                     <section class="sidebar-group-link">
@@ -346,6 +349,7 @@ $url = Yii::$app->urlManager;
                         <section class="sidebar-dropdown">
                             <a href="<?= $url->createUrl(['/questions/create', 'course_id' => 0]) ?>">افزودن سوال</a>
                             <a href="<?= $url->createUrl(['/questions/index', 'course_id' => 0]) ?>">لیست سوالات</a>
+                            <a href="<?= $url->createUrl(['/faq', 'belong' => 'packages']) ?>">سوالات متداول پکیج</a>
                         </section>
                     </section>
                     <section class="sidebar-group-link">

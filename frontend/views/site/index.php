@@ -125,6 +125,8 @@ $url = Yii::$app->urlManager;
         </div>
     </div>
 <?php } ?>
+
+
 <!-- post section -->
 <?php if ($post) { ?>
     <div class="container-fluid mt-5 px-5">

@@ -23,6 +23,9 @@ class MetaTags extends \yii\db\ActiveRecord
     const BELONG_BLOG = 'blog';
     const BELONG_ARCHIVE = 'archive';
 
+    const TAG = 'tags';
+
+    const CATEGORY = 'category';
     const TYPE_REL = 'rel';
     const TYPE_NAME = 'name';
     const TYPE_PROPERTY = 'property';

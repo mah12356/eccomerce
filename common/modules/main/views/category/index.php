@@ -92,11 +92,7 @@ $this->params['breadcrumbs'][] = '/ '.$this->title;
                         }
                     },
                     'meta-tag' => function ($url, $model) {
-                        if ($model->belong != Category::BELONG_JOB && $model->belong != Category::BELONG_BLOG && $model->belong != Category::BELONG_TAG){
-                            return Html::a(Yii::t('app', 'مدیریت سئو'), ['/main/meta-tags/index', 'parent_id' => $model->id, 'belong' => MetaTags::BELONG_BLOG], ['class' => 'btn btn-dark']);
-                        }else{
-                            return null;
-                        }
+                        return Html::a(Yii::t('app', 'مدیریت سئو'), ['/main/meta-tags/index', 'parent_id' => $model->id, 'belong' => MetaTags::CATEGORY], ['class' => 'btn btn-dark']);
                     },
                     'preview' => function ($url, $model) {
                         if ($model->belong != Category::BELONG_JOB && $model->belong != Category::BELONG_BLOG && $model->belong != Category::BELONG_TAG){
