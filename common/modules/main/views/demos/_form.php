@@ -16,10 +16,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-<!--    --><?php //= $form->field($model, 'for')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'for')->dropDownList(['client_comments'=>'برای نظرات دختران مهسا','demo_class'=>'برای دموی کلاس ها','ad_sentence'=>'ویدیو متن تبلیغاتی'],['prompt'=>'انتخاب کنید'])?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'ذخیره'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -251,21 +251,31 @@ class SiteController extends Controller
         MetaTags::setMetaTags(0, MetaTags::BELONG_HOME);
 
         $post = Posts::find()->where(['page_id' => 0])->with('images')->asArray()->all();
+        // عکس های قبل و بعد
         $process = Gallery::find()->where(['parent_id' => 0, 'belong' => Gallery::BELONG_HOME, 'type' => Gallery::TYPE_COMPARE])
             ->limit(4)->asArray()->all();
-
+        // ****************
+        // پکیج ها
         $packages = Packages::find()->where(['status' => Packages::STATUS_READY, 'preview' => Packages::PREVIEW_ON])->andWhere(['=', 'discount', 0])
             ->with('courses')->with('cat')->asArray()->all();
+        //************
+        // دوره های تخفیفی
         $offers = Packages::find()->where(['status' => Packages::STATUS_READY, 'preview' => Packages::PREVIEW_ON])->andWhere(['!=', 'discount', 0])
             ->with('courses')->with('cat')->asArray()->all();
+        // ***********
+        // نظرات دختران مهسا آنلاین
         $comments = Comments::find()->orderBy(new Expression('rand()'))->asArray()->all();
-
+        //۸***********
+        // مطالب پیشنهادی مهسا آنلاین
         $selectedArticle = Articles::find()->where(['preview' => Articles::PREVIEW_ON, 'publish' => Articles::PUBLISH_TRUE])->limit(6)->asArray()->all();
+        // ***********
+        // جدیدترین مقالات
         $newArticle = Articles::find()->where(['NOT IN', 'id', ArrayHelper::map($selectedArticle, 'id', 'id')])
             ->andWhere(['publish' => Articles::PUBLISH_TRUE])->orderBy(['modify_date' => SORT_DESC])->limit(6)->asArray()->all();
-
+        //************
+        // سوالات متداول
         $faq = Faq::find()->where(['belong' => Faq::BELONG_HOME])->orderBy(['sort' => SORT_ASC])->asArray()->all();
-
+        /************/
         return $this->render('index', [
             'post' => $post,
             'process' => $process,
@@ -378,29 +388,39 @@ class SiteController extends Controller
             ->limit(4)->asArray()->all();
 
         $this->view->title = 'لیست پکیج ها';
-
+        // چرا این پکیج ها را طراحی کردم
         $package_design = PackageDesign::find()->one();
-
-        $comments = Comments::find()->orderBy(new Expression('rand()'))->asArray()->all();
-
+        //*************
+        // همه پکیج ها
         $model = Packages::find()->where(['status' => Packages::STATUS_READY, 'preview' => Packages::PREVIEW_ON])->orderBy(['start_register' => SORT_ASC])
             ->with('cat')->with('courses')->orderBy(['id' => SORT_DESC])->asArray()->all();
-
-        $demos= Demos::find()->asArray()->one();
-
+        //************
+        // ویدیو و متن تلیغاتی
+        $ad_sentence = Demos::find()->where(['for'=> 'ad_sentence'])->asArray()->one();
+        // ************
+        // نظات مشتریان مهسا
+        $mahsa_client = Demos::find()->where(['for'=>'client_comments'])->asArray()->one();
+        //*************
+        // دموی کلاس ها
+        $demo_class= Demos::find()->where(['for'=>'demo_class'])->asArray()->one();
+        //***************
+        // نتایج پس از گذراندن پکیج ها
         $result_package= Result::find()->all();
-
+        //****************
+        // سوالات متداول
         $faq = Faq::find()->where(['belong' => Faq::BELONG_PACKAGES])->orderBy(['sort' => SORT_ASC])->asArray()->all();
+        //*************
 
 
         return $this->render('packages', [
             'model' => $model,
             'process' => $process,
-            'comments' => $comments,
             'result_package'=>$result_package,
             'faq' => $faq,
-            'demos'=>$demos,
-            'package_design' =>$package_design
+            'demo_class'=>$demo_class,
+            'package_design' =>$package_design,
+            'ad_sentence' => $ad_sentence,
+            'mahsa_client' => $mahsa_client
         ]);
     }
 
@@ -476,9 +496,10 @@ class SiteController extends Controller
         }
 
         $this->view->title = 'مجله مهسا آنلاین';
-
+        // تگ های متا و لینک های کنونیکال
         $meta_tags = MetaTags::find()->where(['parent_id'=>$category,'belong'=>MetaTags::CATEGORY])->asArray()->all();
-
+        //************
+        // دسته بندی مقاله ها
         if ($category == 0) {
             $model =Articles::find()->orderBy(['modify_date'=>SORT_DESC])->asArray()->all();
 
@@ -490,7 +511,10 @@ class SiteController extends Controller
         if (!$model) {
             return Yii::$app->response->redirect(Yii::$app->request->referrer);
         }
+        //******************
+        // کامنت گذاری
         $community = Community::find()->where(['belong'=>'blog'])->asArray()->all();
+        //**************
         return $this->render('blogs', [
             'model' => $model,
             'category' => $category,
@@ -509,14 +533,14 @@ class SiteController extends Controller
         if (isset($_SESSION['appMode']) && $_SESSION['appMode']) {
             $this->layout = 'app';
         }
-
+        // برچسب ها یا هشتگ
         $tag = Category::findOne(['id' => $id]);
         if (!$tag) {
             return Yii::$app->response->redirect(Yii::$app->request->referrer);
         }
-
-        $meta_tags = MetaTags::find()->where(['parent_id'=>$id,'belong'=>MetaTags::TAG])->asArray()->all();
-
+        //تگ های متا ولینک های کنونیکال
+        $meta_tags = MetaTags::find()->where(['parent_id'=>$id,'belong'=>Category::BELONG_TAG])->asArray()->all();
+        //****************
         $this->view->title = $tag->title;
 
         $posts = Posts::find()->where(['page_id' => $id, 'belong' => Posts::BELONG_TAGS])->with('images')->asArray()->all();
@@ -540,9 +564,12 @@ class SiteController extends Controller
         if (isset($_SESSION['appMode']) && $_SESSION['appMode']) {
             $this->layout = 'app';
         }
-
+        // مقاله های برگزیده سایدبار
         $chosen_art=ChoosenArt::find()->where(['status'=>'ready'])->asArray()->all();
+        //***********
+        // همه ی مقاله
         $model = Articles::find()->where(['id' => $id])->with('cat')->with('tags.tag')->with('posts.images')->asArray()->one();
+        //*******************
         if (!$model) {
             return Yii::$app->response->redirect(Yii::$app->request->referrer);
         }
@@ -550,13 +577,14 @@ class SiteController extends Controller
         $this->view->title = $model['page_title'];
 
         MetaTags::setMetaTags($id, MetaTags::BELONG_BLOG);
-
+        // مقاله های مرتبط
         $related = Articles::find()->where(['category_id' => $model['category_id']])->andWhere(['!=', 'id', $model['id']])
             ->orderBy(new Expression('rand()'))->limit(4)->asArray()->all();
-
+        //****************
+        // کامنت گذاری کاربران
         $comments = Community::find()->where(['parent_id' => $id, 'status' => Community::STATUS_SUBMIT])
             ->orderBy(['date' => SORT_DESC])->with('user')->asArray()->all();
-
+        //************
         $community = new Community();
         $signupForm = new SignupForm();
 
@@ -597,9 +625,15 @@ class SiteController extends Controller
                 }
             }
         }
+        // اخرین مقاله ها
         $last_arts = Articles::find()->orderBy(['modify_date'=>SORT_DESC])->limit('5')->asArray()->all();
+        //**************
+        // بنر اخرین مقاله ها
         $last_arts_banner=ChosenArtBanner::find()->where(['for'=>'last_arts'])->asArray()->one();
+        //************
+        // بنر آخرین مقاله ها
         $chosen_art_banner=ChosenArtBanner::find()->where(['for'=>'chosen_art'])->asArray()->one();
+        // *************
         return $this->render('article-view', [
             'chosen_art'=>$chosen_art,
             'model' => $model,

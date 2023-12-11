@@ -29,7 +29,7 @@ class Demos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['video', 'description'], 'required'],
+            [['for'],'required'],
             [['description'], 'string'],
             [['for'], 'string', 'max' => 300],
             [['file'],'file']
@@ -45,8 +45,8 @@ class Demos extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'آیدی'),
             'file' => Yii::t('app', 'ویدیو'),
             'description' => Yii::t('app', 'توضیحات'),
-            'for' => Yii::t('app', 'For'),
-//            'video' => Yii::t('app', 'ویدیو'),
+            'for' => Yii::t('app', 'برای'),
+            'video' => Yii::t('app', 'ویدیو'),
         ];
     }
 

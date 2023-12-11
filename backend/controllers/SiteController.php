@@ -24,6 +24,7 @@ use common\models\User;
 use common\models\UserSearch;
 use common\models\Coach;
 use common\modules\blog\models\Articles;
+use common\modules\main\models\Category;
 use Symfony\Component\Yaml\Yaml;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -64,7 +65,7 @@ class SiteController extends Controller
                         'roles' => ['dev', 'admin', 'coach'],
                     ],
                     [
-                        'actions' => ['choosen-art'],
+                        'actions' => ['choosen-art','cat-seo'],
                         'allow' => true,
                         'roles' => ['dev', 'admin'],
                     ],
@@ -110,6 +111,12 @@ class SiteController extends Controller
 
         return $this->render('index');
     }
+    public function actionCatSeo(){
+        $category = Category::find()->where(['belong'=>Category::BELONG_BLOG])->asArray()->all();
+        return $this->render('cat-seo',[
+            'cat'=>$category
+        ]);
+}
     public function actionChoosenArt(){
         $articles=Articles::find()->asArray()->all();
 
