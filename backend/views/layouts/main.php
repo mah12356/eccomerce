@@ -264,7 +264,7 @@ $url = Yii::$app->urlManager;
                                 دسته جدید</a>
                             <a href="<?= $url->createUrl(['/main/category/index', 'belong' => Category::BELONG_BLOG]) ?>">لیست
                                 دسته‌ها</a>
-
+                            <a href="<?= $url->createUrl(['/site/cat-seo'])?>">مدیریت سئو دسته بندی ها</a>
                         </section>
                     </section>
                     <section class="sidebar-group-link">

@@ -31,6 +31,8 @@ class Articles extends \yii\db\ActiveRecord
 
     const UPLOAD_PATH = 'article';
 
+    const VIDEO = 'video';
+
     public $imageFile;
     public $posterFile;
     public $videoFile;

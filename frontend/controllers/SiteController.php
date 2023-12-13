@@ -32,6 +32,7 @@ use common\modules\main\models\Category;
 use common\modules\main\models\Config;
 use common\modules\main\models\MetaTags;
 use common\modules\main\models\Tokens;
+use common\modules\models\Counseling;
 use common\modules\models\Demos;
 use common\modules\models\PackageDesign;
 use common\modules\models\Result;
@@ -410,7 +411,14 @@ class SiteController extends Controller
         // سوالات متداول
         $faq = Faq::find()->where(['belong' => Faq::BELONG_PACKAGES])->orderBy(['sort' => SORT_ASC])->asArray()->all();
         //*************
-
+        $name = Yii::$app->request->post('full_name');
+        $phone = Yii::$app->request->post('phone');
+        if ($this->request->isPost){
+            $counseling = new Counseling();
+            $counseling->name = $name;
+            $counseling->phone = $phone;
+            $counseling->save();
+        }
 
         return $this->render('packages', [
             'model' => $model,
@@ -543,6 +551,8 @@ class SiteController extends Controller
         //****************
         $this->view->title = $tag->title;
 
+        $community = Community::find()->where(['belong'=>'blog'])->asArray()->all();
+
         $posts = Posts::find()->where(['page_id' => $id, 'belong' => Posts::BELONG_TAGS])->with('images')->asArray()->all();
 
         return $this->render('tags', [
@@ -550,7 +560,8 @@ class SiteController extends Controller
             'model' => Articles::find()->where(['IN', 'id', ArrayHelper::map(Tags::find()->where(['tag_id' => $id])->asArray()->all(), 'id', 'article_id')])
                 ->andWhere(['publish' => Articles::PUBLISH_TRUE])->orderBy(['id' => SORT_DESC])->with('cat')->asArray()->all(),
             'posts' => $posts,
-            'meta_tags' => $meta_tags
+            'meta_tags' => $meta_tags,
+            'community' => $community
         ]);
     }
 
