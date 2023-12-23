@@ -87,12 +87,13 @@ $this->registerJsFile('@web/js/app.js', [
                 </div>
                 <div class="col-md-1 col-2">
                     <?php if (Yii::$app->user->isGuest) { ?>
-                        <a class="register-icon" href="<?= $url->createUrl('/site/login') ?>"><i
-                                class="fa fa-user"></i></a>
+                        <a class="register-icon p-0" href="<?= $url->createUrl('/site/login') ?>">
+                            <img src="/upload/img/6681204.png" class="w-100 h-100" alt="">
+                        </a>
                     <?php } else { ?>
                         <div class="dropdown">
-                            <button class="btn dropdown-toggle register-icon" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user"></i>
+                            <button class="btn dropdown-toggle register-icon p-0" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/upload/img/6681204.png" class="w-100 h-100" alt="">
                             </button>
 
                             <ul class="drop-section dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -120,27 +121,27 @@ $this->registerJsFile('@web/js/app.js', [
             <div class="container mt-4">
                 <div class="row accessibility">
                     <div class="col-lg-2 col-md-4 col-6 mb-2">
-                        <img class="link-icon" src="/upload/statics/analyze.png" alt="">
+                        <img class="link-icon" src="/upload/img/analyze.png" alt="">
                         <a class="links" href="<?= $url->createUrl(['/analyze/index']) ?>">آنالیز بدنی</a>
                     </div>
                     <div class="col-lg-2 col-md-4 col-6 mb-2">
-                        <img class="link-icon" src="/upload/statics/courses.png" alt="">
+                        <img class="link-icon" src="/upload/img/courses.png" alt="">
                         <a class="links" href="<?= $url->createUrl(['/packages/index']) ?>">دوره‌های من</a>
                     </div>
                     <div class="col-lg-2 col-md-4 col-6 mb-2">
-                        <img class="link-icon" src="/upload/statics/diet.png" alt="">
+                        <img class="link-icon" src="/upload/img/diet.png" alt="">
                         <a class="links" href="<?= $url->createUrl(['/diet/index']) ?>">برنامه‌های غذایی</a>
                     </div>
                     <div class="col-lg-2 col-md-4 col-6 mb-2">
-                        <img class="link-icon" src="/upload/statics/factors.png" alt="">
+                        <img class="link-icon" src="/upload/img/factors.png" alt="">
                         <a class="links" href="<?= $url->createUrl(['/factor/index']) ?>">لیست فاکتورها</a>
                     </div>
                     <div class="col-lg-2 col-md-4 col-6 mb-2">
-                        <img class="link-icon" src="/upload/statics/chat.png" alt="">
+                        <img class="link-icon" src="/upload/img/chat.png" alt="">
                         <a class="links" href="<?= $url->createUrl(['/tickets/index']) ?>">پیام‌رسان مهسا</a>
                     </div>
                     <div class="col-lg-2 col-md-4 col-6 mb-2">
-                        <img class="link-icon" src="/upload/statics/user.png" alt="">
+                        <img class="link-icon" src="/upload/img/user.png" alt="">
                         <a class="links" href="<?= $url->createUrl(['/site/profile']) ?>">اطلاعات کاربری</a>
                     </div>
                 </div>

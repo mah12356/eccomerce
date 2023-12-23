@@ -35,7 +35,7 @@ use dosamigos\tinymce\TinyMce;
             ],
             'toolbar' => "undo redo | styleselect | bold italic | link | hyperlink | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table"
         ]
-    ]); ?>
+    ]);?>
 
     <div class="row">
         <div class="col-4">

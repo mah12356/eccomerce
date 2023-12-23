@@ -25,6 +25,7 @@ use common\models\UserSearch;
 use common\models\Coach;
 use common\modules\blog\models\Articles;
 use common\modules\main\models\Category;
+use common\modules\models\Counseling;
 use Symfony\Component\Yaml\Yaml;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -65,7 +66,7 @@ class SiteController extends Controller
                         'roles' => ['dev', 'admin', 'coach'],
                     ],
                     [
-                        'actions' => ['choosen-art','cat-seo'],
+                        'actions' => ['choosen-art','cat-seo','counseling'],
                         'allow' => true,
                         'roles' => ['dev', 'admin'],
                     ],
@@ -117,6 +118,12 @@ class SiteController extends Controller
             'cat'=>$category
         ]);
 }
+    public function actionCounseling(){
+        $counseling = Counseling::find()->asArray()->all();
+        return $this->render('counseling',[
+            'counseling' => $counseling
+        ]);
+    }
     public function actionChoosenArt(){
         $articles=Articles::find()->asArray()->all();
 

@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var common\modules\models\DemosSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'همه ویدیو های صفحه پگیج ها');
+$this->title = Yii::t('app', 'ویدیو های صفحه پکیج ها');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="demos-index">
@@ -30,15 +30,31 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'file',
             'description:ntext',
+            'video',
             'for',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Demos $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'ویرایش'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                    },
+                    'ٰٰview' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'دیدن'), ['view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'حذف'), ['delete', 'id' => $model->id], [
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => Yii::t('app', 'آیا مطمئن هستید ؟'),
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                ],
             ],
         ],
-    ]);?>
+    ]); ?>
+
+
 </div>

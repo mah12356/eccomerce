@@ -8,9 +8,9 @@ use Yii;
  * This is the model class for table "demos".
  *
  * @property int $id
- * @property string $video
  * @property string $description
- * @property string|null $for
+ * @property string $video
+ * @property string $for
  */
 class Demos extends \yii\db\ActiveRecord
 {
@@ -29,7 +29,7 @@ class Demos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['for'],'required'],
+            [['for'], 'required'],
             [['description'], 'string'],
             [['for'], 'string', 'max' => 300],
             [['file'],'file']
@@ -43,10 +43,10 @@ class Demos extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'آیدی'),
-            'file' => Yii::t('app', 'ویدیو'),
             'description' => Yii::t('app', 'توضیحات'),
+            'video' => Yii::t('app', 'Video'),
             'for' => Yii::t('app', 'برای'),
-            'video' => Yii::t('app', 'ویدیو'),
+            'file' => Yii::t('app', 'ویدیو'),
         ];
     }
 

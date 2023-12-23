@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var common\modules\models\ResultSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'Results');
+$this->title = Yii::t('app', 'نتیجه ها');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="result-index">
@@ -31,11 +31,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'skill',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Result $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'ویرایش'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                    },
+                    'view' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'دیدن'), ['view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'حذف'), ['delete', 'id' => $model->id], [
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => Yii::t('app', 'آیا مطمئن هستید ؟'),
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                ],
             ],
         ],
     ]); ?>

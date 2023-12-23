@@ -238,8 +238,8 @@ if ($_SESSION['appMode']) {
                             </a>
                         <?php } else { ?>
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle register-icon" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-user"></i>
+                                <button class="btn dropdown-toggle register-icon p-0" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/upload/img/6681204.png" class="w-100 h-100" alt="">
                                 </button>
 
                                 <ul class="drop-section dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -303,11 +303,11 @@ if ($_SESSION['appMode']) {
                     <?php } else { ?>
                         <div class="row">
                             <div class="col-6">
-                                <img class="slogan" src="/upload/assets/HeroTitle.png" alt="">
+                                <img class="slogan" src="/upload/img/HeroTitle.png" alt="">
                             </div>
                             <div class="col-6">
                                 <div class="data-section">
-                                    <img src="/upload/assets/logo.png" alt="">
+                                    <img src="/upload/img/logo.png" alt="">
                                     <?php foreach ($packageCategories as $item) { ?>
                                         <a href="<?= $url->createUrl(['/site/packages', 'category_id' => $item['id']]) ?>"
                                            target="_blank"><?= $item['title'] ?></a>
@@ -402,7 +402,7 @@ if ($_SESSION['appMode']) {
                     <?php } ?>
                 </div>
                 <div class="col-md-2 col-12">
-                    <img class="d-block w-100 h-auto mt-3" src="/upload/assets/enamad.png" alt="نماد اعتماد">
+                    <img class="d-block w-100 h-auto mt-3" src="/upload/img/enamad.png" alt="نماد اعتماد">
                     <a href="<?= $url->createUrl(['/site/download-app']) ?>"><img class="download-app" src="/upload/assets/direct-download.svg" alt="دانلود اپلیکیشن"></a>
                 </div>
             </div>

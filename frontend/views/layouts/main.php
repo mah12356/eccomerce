@@ -81,14 +81,14 @@ $address = Config::getKeyContent(Config::KEY_ADDRESS);
                     </nav><!-- .navbar -->
                 </div>
                 <div class="col-md-1 col-2">
-                    <?php if (Yii::$app->user->isGuest) { ?>
+                    <?php if (Yii::$app->user->isGuest) {?>
                         <a class="register-icon p-0" href="<?= $url->createUrl('/site/login') ?>">
                             <img src="/upload/img/6681204.png" class="w-100 h-100" alt="">
                         </a>
-                    <?php } else { ?>
+                    <?php } else {?>
                         <div class="dropdown">
-                            <button class="btn dropdown-toggle register-icon" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user"></i>
+                            <button class="btn dropdown-toggle register-icon p-0" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/upload/img/6681204.png" class="w-100 h-100" alt="">
                             </button>
 
                             <ul class="drop-section dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -117,8 +117,10 @@ $address = Config::getKeyContent(Config::KEY_ADDRESS);
             ]) ?>
             <?= Alert::widget() ?>
             <div class="back-button-box mt-5 pt-3">
-                <a href="<?= $url->createUrl(['/site/navigate']) ?>"><i class="bi bi-arrow-right-circle-fill"></i><span
-                        class="mx-2">بازگشت</span></a>
+                <a href="<?= $url->createUrl(['/site/navigate']) ?>">
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                    <span class="mx-2">بازگشت</span>
+                </a>
             </div>
             <?= $content ?>
         </div>
@@ -159,10 +161,10 @@ $address = Config::getKeyContent(Config::KEY_ADDRESS);
                     <?php } ?>
                 </div>
                 <div class="col-md-2 col-12">
-                    <img class="d-block w-100 h-auto mt-3" src="/upload/assets/enamad.png" alt="نماد اعتماد">
-                    <img class="download-app" src="/upload/assets/bazar.svg" alt="دانلود اپلیکیشن از بازار">
-                    <img class="download-app" src="/upload/assets/mayket.svg" alt="دانلود اپلیکیشن از مایکت">
-                    <a href="<?= $url->createUrl(['/site/download-app']) ?>"><img class="download-app" src="/upload/assets/direct-download.svg" alt="دانلود اپلیکیشن"></a>
+                    <img class="d-block w-100 h-auto mt-3" src="/upload/img/enamad.png" alt="نماد اعتماد">
+                    <img class="download-app" src="/upload/img/bazar.svg" alt="دانلود اپلیکیشن از بازار">
+                    <img class="download-app" src="/upload/img/mayket.svg" alt="دانلود اپلیکیشن از مایکت">
+                    <a href="<?= $url->createUrl(['/site/download-app']) ?>"><img class="download-app" src="/upload/img/direct-download.svg" alt="دانلود اپلیکیشن"></a>
                 </div>
             </div>
         </div>

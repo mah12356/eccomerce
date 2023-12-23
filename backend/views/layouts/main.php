@@ -95,10 +95,7 @@ $url = Yii::$app->urlManager;
                     <section class="sidebar-part-title">منو</section>
                     <hr>
                     <a href="<?= $url->createUrl(['/main/config/index']) ?>" class="sidebar-link"><i class="fas fa-cog"></i><span>تنظیمات</span></a>
-                    <a href="<?= $url->createUrl(['/main/result/create']) ?>" class="sidebar-link"><i class="fa fa-list-alt" aria-hidden="true"></i>
-                        <span>ساخت نتیجه پکیج</span></a>
-                    <a href="<?= $url->createUrl(['/main/demos/']) ?>" class="sidebar-link"><i class="fa fa-list-alt" aria-hidden="true"></i>
-                        <span>دموی کلاس</span></a>
+
                     <section class="sidebar-group-link">
                         <section class="sidebar-dropdown-toggle">
                             <i class="fas fa-home icon"></i><span>خانه</span><i class="fas fa-angle-left angle"></i>
@@ -305,6 +302,7 @@ $url = Yii::$app->urlManager;
                         </section>
                     </section>
 
+
                     <section class="sidebar-part-title">مدیریت پکیج ها</section>
                     <section class="sidebar-group-link">
                         <section class="sidebar-dropdown-toggle">
@@ -318,6 +316,25 @@ $url = Yii::$app->urlManager;
                                 دسته‌ها</a>
                         </section>
                     </section>
+
+
+                    <section class="sidebar-group-link">
+                        <section class="sidebar-dropdown-toggle">
+                            <i class="fas fa-server icon"></i><span>مدیریت صفحه پکیج ها</span><i
+                                    class="fas fa-angle-left angle"></i>
+                        </section>
+                        <section class="sidebar-dropdown">
+                            <a href="<?= $url->createUrl(['/main/result/create']) ?>" class="sidebar-link">
+                                <span>ساخت نتیجه پکیج</span></a>
+
+                            <a href="<?= $url->createUrl(['/main/demos/']) ?>" class="sidebar-link">
+                                <span>دموی کلاس</span></a>
+                            <a href="<?= $url->createUrl(['/site/counseling']) ?>" class="sidebar-link">
+                                <span>متقاضیان مشاوره</span></a>
+                        </section>
+                    </section>
+
+
                     <section class="sidebar-group-link">
                         <section class="sidebar-dropdown-toggle">
                             <i class="fas fa-archive icon"></i><span>مدیریت پکیج ها</span><i

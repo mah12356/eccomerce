@@ -30,6 +30,8 @@ class Posts extends \yii\db\ActiveRecord
 
     const UPLOAD_PATH = 'post';
 
+    const UPLOAD_IMG = 'img';
+
     public $uploadFile;
 
     /**

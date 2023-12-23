@@ -31,11 +31,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'description',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, PackageDesign $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete}',
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'ویرایش'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                    },
+                    'view' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'دیدن'), ['view', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'حذف'), ['delete', 'id' => $model->id], [
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => Yii::t('app', 'آیا مطمئن هستید ؟'),
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                ],
             ],
         ],
     ]); ?>

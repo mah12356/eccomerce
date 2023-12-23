@@ -91,9 +91,9 @@ $this->params['breadcrumbs'][] = '/ '.$this->title;
                             return null;
                         }
                     },
-//                    'meta-tag' => function ($url, $model) {
-//                        return Html::a(Yii::t('app', 'مدیریت سئو'), ['/main/meta-tags/index', 'parent_id' => $model->id, 'belong' => $_GET['belong']], ['class' => 'btn btn-dark']);
-//                    },
+                    'meta-tag' => function ($url, $model) {
+                        return Html::a(Yii::t('app', 'مدیریت سئو'), ['/main/meta-tags/index', 'parent_id' => $model->id, 'belong' => $_GET['belong']], ['class' => 'btn btn-dark']);
+                    },
                     'preview' => function ($url, $model) {
                         if ($model->belong != Category::BELONG_JOB && $model->belong != Category::BELONG_BLOG && $model->belong != Category::BELONG_TAG){
                             if ($model->preview == Category::PREVIEW_ON){

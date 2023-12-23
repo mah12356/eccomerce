@@ -1,0 +1,26 @@
+
+.main {
+    display:flex;
+    flex: 70%;
+    background-color: #6832f6;
+    padding: 20px;
+    justify-content:center;
+    align-items:center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size:30px;
+    color:white;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #6d480a;
+    color:#fffaf0
+}

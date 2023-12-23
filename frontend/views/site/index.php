@@ -138,7 +138,7 @@ $url = Yii::$app->urlManager;
         ?>
                 <div class="row my-4">
                     <div class="col-md-2 col-sm-12 col-12">
-                        <img class="post-banner" src="<?= Gadget::showFile($item['banner'], 'img') ?>" alt="<?= $item['alt'] ?>">
+                        <img class="post-banner" src="<?= Gadget::showFile($item['banner'], Posts::UPLOAD_IMG) ?>" alt="<?= $item['alt'] ?>">
                     </div>
                     <div class="col-md-10 col-12">
                         <div class="post-content">
@@ -159,7 +159,7 @@ $url = Yii::$app->urlManager;
                         </div>
                     </div>
                     <div class="col-md-2 col-12 order-md-2 order-1">
-                        <img class="post-banner" src="<?= Gadget::showFile($item['banner'], Posts::UPLOAD_PATH) ?>" alt="<?= $item['alt'] ?>">
+                        <img class="post-banner" src="<?= Gadget::showFile($item['banner'], Posts::UPLOAD_IMG) ?>" alt="<?= $item['alt'] ?>">
                     </div>
                 </div>
         <?php

@@ -69,7 +69,7 @@ class SectionsController extends Controller
 
                 if ($model->save()) {
                     $response = (new Sections())->defineSections($model->id, $days);
-                    if (!$response['error']) {
+                    if (!$response['error']){
                         $transaction->commit();
                         return $this->redirect(['groups']);
                     }else {

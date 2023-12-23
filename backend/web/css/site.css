@@ -92,3 +92,8 @@ a.desc:after {
 .gridview-banner {
     width: 300px;
 }
+.xy{
+    width:300px;
+    height:200px;
+    background-color:yellow;
+}

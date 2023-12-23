@@ -6,6 +6,8 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var backend\models\ChosenArtBanner $model */
 /** @var yii\widgets\ActiveForm $form */
+
+////// site.css
 ?>
 
 <div class="chosen-art-banner-form">
@@ -27,3 +29,9 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+<section class="row">
+    <article class="col-6 xy">
+        <p>طول : ۲۲۰ پیکسل</p>
+        <p>عرض : ۱۱۰ پیکسل</p>
+    </article>
+</section>

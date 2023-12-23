@@ -17,9 +17,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'video') ?>
-
     <?= $form->field($model, 'description') ?>
+
+    <?= $form->field($model, 'video') ?>
 
     <?= $form->field($model, 'for') ?>
 

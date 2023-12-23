@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'video',
             'description:ntext',
+            'video',
             'for',
         ],
     ]) ?>

@@ -22,5 +22,4 @@ $this->params['breadcrumbs'][] = $this->title;
      <?= Html::submitButton(Yii::t('app', 'ثبت اطلاعات'), ['class' => 'btn btn-success']) ?>
     <?php ActiveForm::end(); ?>
 
-
 </div>

@@ -18,7 +18,7 @@ class DemosSearch extends Demos
     {
         return [
             [['id'], 'integer'],
-            [['video', 'description', 'for'], 'safe'],
+            [['description', 'video', 'for'], 'safe'],
         ];
     }
 
@@ -61,8 +61,8 @@ class DemosSearch extends Demos
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'video', $this->video])
-            ->andFilterWhere(['like', 'description', $this->description])
+        $query->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'video', $this->video])
             ->andFilterWhere(['like', 'for', $this->for]);
 
         return $dataProvider;

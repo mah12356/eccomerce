@@ -83,12 +83,13 @@ class DietController extends Controller
 
         $package_id = ArrayHelper::map($model, 'id', 'package_id');
 
+
         Diet::activeDiets(\Yii::$app->user->id, $package_id);
 
         $packages = array();
 
         foreach ($model as $item) {
-            if ($item['package'] && $item['package']['status'] != Packages::STATUS_INACTIVE) {
+            if ($item['package'] && $item['package']['status'] != Packages::STATUS_INACTIVE){
                 array_push($packages, $item['package']);
             }
         }
