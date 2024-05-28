@@ -1,59 +1,70 @@
 {
-    "name": "yiisoft/yii2-app-advanced",
-    "description": "Yii 2 Advanced Project Template",
-    "keywords": ["yii2", "framework", "advanced", "project template"],
-    "homepage": "https://www.yiiframework.com/",
+    "name": "laravel/laravel",
     "type": "project",
-    "license": "BSD-3-Clause",
-    "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "https://www.yiiframework.com/forum/",
-        "wiki": "https://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
-    },
-    "minimum-stability": "stable",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
     "require": {
-        "php": ">=7.4.0",
-        "yiisoft/yii2": "~2.0.45",
-        "yiisoft/yii2-bootstrap5": "~2.0.2",
-        "yiisoft/yii2-symfonymailer": "~2.0.3",
-        "2amigos/yii2-tinymce-widget" : "*",
-        "onmotion/yii2-widget-apexcharts": "*"
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^10.0",
+        "laravel/sanctum": "^3.2",
+        "laravel/tinker": "^2.8",
+        "tcg/voyager": "^1.7",
+      "ext-soap": "*"
     },
     "require-dev": {
-        "yiisoft/yii2-debug": "~2.1.0",
-        "yiisoft/yii2-gii": "~2.2.0",
-        "yiisoft/yii2-faker": "~2.0.0",
-        "phpunit/phpunit": "~9.5.0",z
-        "codeception/codeception": "^5.0.0 || ^4.0",
-        "codeception/lib-innerbrowser": "^4.0 || ^3.0 || ^1.1",
-        "codeception/module-asserts": "^3.0 || ^1.1",
-        "codeception/module-yii2": "^1.1",
-        "codeception/module-filesystem": "^3.0 || ^2.0 || ^1.1",
-        "codeception/verify": "^3.0 || ^2.2",
-        "symfony/browser-kit": "^6.0 || >=2.7 <=4.2.4"
+        "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.0",
+        "laravel/sail": "^1.18",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "common\\tests\\": ["common/tests/", "common/tests/_support"],
-            "backend\\tests\\": ["backend/tests/", "backend/tests/_support"],
-            "frontend\\tests\\": ["frontend/tests/", "frontend/tests/_support"]
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "10.x-dev"
+        },
+        "laravel": {
+            "dont-discover": []
         }
     },
     "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
         "allow-plugins": {
-            "yiisoft/yii2-composer" : true
-        },
-        "process-timeout": 1800,
-        "fxp-asset": {
-            "enabled": false
+            "pestphp/pest-plugin": true
         }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        }
-    ]
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
