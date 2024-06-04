@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('paras', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
-            $table->string('banner',300)->nullable();
-            $table->text('paragraph')->nullable(false);
-            $table->string('alt',300)->nullable();
-            $table->integer('article_id')->nullable(false);
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->integer('user_id');
+            $table->string('name');
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('profiles');
     }
 };

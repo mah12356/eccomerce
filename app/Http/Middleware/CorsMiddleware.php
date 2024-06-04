@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HomeMiddleware
+class CorsMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,14 @@ class HomeMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() === null) {
-            // Redirect to login page if user is not logged in
-            return redirect('admin/login');
+        if ($request->isMethod('OPTIONS')){
+            return response()->json([
+                'message'=> 'Cors Pre-Flight'
+            ],200,[
+                'Access-Control-Allow-Origin'=>'*',
+                'Access-Control-Allow-Methods'=>'GET,POST,PUT,OPTIONS,DELETE',
+                'Access-Control-Allow-Headers'=>'Content-Type,X-Auth-Token,origin'
+            ]);
         }
         return $next($request);
     }

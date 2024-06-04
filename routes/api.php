@@ -1,19 +1,23 @@
 <?php
 
 use Illuminate\Http\Request;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\Route;
+use App\Models\Profile;
+use Illuminate\Support\Facades\Storage;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
+Route::post('/hello',function (Request $request){
+    return response()->json($request);
+//dd($request);
+//header('Access-Control-Allow-Origin:*');
+//$post = new Profile();
+//$post->user_id = $request->input('user_id');
+//$post->name = $request->input('name');
+//$post->save();
+//     if ($request->isMethod('POST')) {
+//         return response()->json([
+//             'data'=>'wqeewqwqe'
+//         ]);
+//     }
 });
